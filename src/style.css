@@ -3,6 +3,7 @@ body {
   margin: 0px;
   font-family: Ubuntu;
   color: #282828;
+  overflow: overlay;
 }
 
 .button {
@@ -75,8 +76,19 @@ label {
   margin-bottom: 5px;
 }
 
-li {
+.details-list {
+  list-style-type: none;
   font-size: 18px;
+}
+.details-list li {
+  padding-top: 10px;
+}
+
+.inside-box__list {
+  padding-left: 70px;
+}
+.inside-box__title {
+  margin-left: 70px;
 }
 
 .nav-bar {
@@ -166,10 +178,6 @@ textarea {
   padding: 10px;
   font-size: 20px;
   margin-bottom: 20px;
-}
-
-ul {
-  list-style-type: none;
 }
 
 .link-list-item {
