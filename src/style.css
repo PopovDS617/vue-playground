@@ -46,7 +46,18 @@ body {
   background-color: #d8d8d8;
   cursor: not-allowed;
 }
+.price {
+  font-size: 35px;
+}
 
+.series-title {
+  font-size: 50px;
+}
+
+.game-title {
+  font-size: 40px;
+  font-style: italic;
+}
 h1 {
   font-size: 50px;
 }

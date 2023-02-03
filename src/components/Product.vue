@@ -3,7 +3,6 @@ defineProps({ msg: String, product: String, src: String });
 </script>
 
 <template>
-  <div class="cart">Корзина: {{ cart }}</div>
   <div class="product-display">
     <div class="product-container">
       <div class="product-image">
@@ -11,8 +10,14 @@ defineProps({ msg: String, product: String, src: String });
       </div>
 
       <div>
-        <h1>{{ gameSerie }}</h1>
-        <h2>{{ title }}</h2>
+        <h1 class="series-title">{{ gameSeries }}</h1>
+        <h2 class="game-title">{{ title }}</h2>
+        <div>
+          <h3 class="price">
+            {{ price ? price + ' руб.' : 'Недоступно для покупки' }}
+          </h3>
+        </div>
+        <hr />
         <div>
           <p v-if="specialInfo">{{ specialInfo }}</p>
           <p v-else-if="inventory > 10">в наличии</p>
@@ -34,7 +39,7 @@ defineProps({ msg: String, product: String, src: String });
           class="button"
           :class="{ disabledButton: !inStock }"
           :disabled="!inStock"
-          @click="addToCart"
+          @click="$emit('addToCart')"
         >
           в корзину
         </button>
@@ -56,11 +61,12 @@ export default {
     return {
       cart: 0,
       showGame: null,
-      gameSerie: 'Неустрашимые',
+      gameSeries: 'Неустрашимые',
       gameList: [
         {
           id: '001',
           title: 'Нормандия',
+          price: 2790,
           inStock: true,
           inventory: 10,
           onSale: true,
@@ -82,6 +88,7 @@ export default {
         {
           id: '002',
           title: 'Северная Африка',
+          price: 2890,
           inStock: true,
           inventory: 150,
           onSale: false,
@@ -114,6 +121,7 @@ export default {
         {
           id: '003',
           title: 'Reinforcements',
+          price: null,
           specialInfo: 'Скоро стартует предзаказ',
           inStock: false,
           inventory: 0,
@@ -135,9 +143,6 @@ export default {
     };
   },
   methods: {
-    addToCart() {
-      this.cart += 1;
-    },
     setShowGame(id) {
       this.showGame = this.gameList.find((listItem) => listItem.id === id);
     },
@@ -145,9 +150,13 @@ export default {
   beforeMount() {
     this.ShowGame = this.gameList[0];
   },
+  emits: ['addToCart'],
   computed: {
     title() {
       return this.showGame ? this.showGame.title : this.gameList[0].title;
+    },
+    price() {
+      return this.showGame ? this.showGame.price : this.gameList[0].price;
     },
     imageUrl() {
       return this.showGame ? this.showGame.imageUrl : this.gameList[0].imageUrl;
