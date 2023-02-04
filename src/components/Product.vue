@@ -1,5 +1,10 @@
 <script setup>
+import { reactive } from 'vue';
+import ReviewForm from './ReviewForm.vue';
 defineProps({ msg: String, product: String, src: String });
+const onSubmitReview = (payload) => {
+  review = payload;
+};
 </script>
 
 <template>
@@ -22,7 +27,7 @@ defineProps({ msg: String, product: String, src: String });
           <p v-if="specialInfo">{{ specialInfo }}</p>
           <p v-else-if="inventory > 10">в наличии</p>
           <p v-else-if="inventory > 0">осталось мало</p>
-          <p v-else>закончилась : (</p>
+          <p v-else>закончилась :(</p>
         </div>
 
         <div
@@ -30,7 +35,10 @@ defineProps({ msg: String, product: String, src: String });
           @click="setShowGame(game.id)"
           class="link-list-item"
         >
-          <div class="color-circle"></div>
+          <div
+            class="color-circle"
+            :class="[game.title === title ? 'active' : null]"
+          ></div>
           <div>
             {{ game.title }}
           </div>
@@ -53,6 +61,7 @@ defineProps({ msg: String, product: String, src: String });
       </div>
     </div>
   </div>
+  <ReviewForm />
 </template>
 
 <script>

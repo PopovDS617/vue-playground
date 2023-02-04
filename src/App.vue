@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
 import Product from './components/Product.vue';
+import ReviewForm from './components/ReviewForm.vue';
 
 const addToCart = () => {
   cart.count += 1;
@@ -9,6 +10,7 @@ const addToCart = () => {
 let cart = reactive({
   count: 0,
 });
+let review = reactive({});
 </script>
 
 <template>
@@ -21,15 +23,6 @@ let cart = reactive({
 
 <script>
 export default {
-  data() {
-    return {
-      cart: 0,
-    };
-  },
-  methods: {
-    addToCart() {
-      this.cart += 1;
-    },
-  },
+  data() {},
 };
 </script>

@@ -34,12 +34,16 @@ body {
 }
 
 .color-circle {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-top: 8px;
   border: 2px solid #d8d8d8;
   border-radius: 50%;
   margin-right: 15px;
+}
+
+.active {
+  background: #42b883;
 }
 
 .disabledButton {
